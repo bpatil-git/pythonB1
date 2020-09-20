@@ -23,7 +23,7 @@ def home(request):
             return render(request, "home.html")
             # messages.info(request, f"You are now logged in as {username}")
         else:
-            print('User##########', user)
+            print('User##########', user)  //comment
             messages.error(request, "Invalid username or password...")
             return redirect('module1:login')
     elif request.session.has_key("username"):
