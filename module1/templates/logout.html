@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+    <script>
+         setTimeout(function(){
+            window.location.href = "{% url 'module1:landing_page' %}";
+         }, 5000);
+      </script>
+      <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+              <h1>Thank for Visiting... <img src="{% static 'img/thanks.png' %}" class="img-fluid" alt=":)"></h1>
+          </div>
+      </div>
+      <p>You will be redirected to home after 5 seconds.</p>
+{% endblock %}
+
+

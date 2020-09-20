@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<head>
+<style>
+    body {
+		font-family: 'Varela Round', sans-serif;
+	}
+	.modal-login {
+		color: #636363;
+		width: 350px;
+		margin: 80px auto 0;
+	}
+	.modal-login .modal-content {
+		padding: 20px;
+		border-radius: 5px;
+		border: none;
+	}
+	.modal-login .modal-header {
+		border-bottom: none;
+        position: relative;
+        justify-content: center;
+	}
+	.modal-login h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 30px 0 -15px;
+	}
+	.modal-login .form-control:focus {
+		border-color: #70c5c0;
+	}
+	.modal-login .form-control, .modal-login .btn {
+		min-height: 40px;
+		border-radius: 3px;
+	}
+	.modal-login .close {
+        position: absolute;
+		top: -5px;
+		right: -5px;
+	}
+	.modal-login .modal-footer {
+		background: #ecf0f1;
+		border-color: #dee4e7;
+		text-align: center;
+        justify-content: center;
+		margin: 0 -20px -20px;
+		border-radius: 5px;
+		font-size: 13px;
+	}
+	.modal-login .modal-footer a {
+		color: #999;
+	}
+	.modal-login .avatar {
+		position: absolute;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		top: -70px;
+		width: 95px;
+		height: 95px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #60c7c1;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+	}
+	.modal-login .avatar img {
+		width: 100%;
+	}
+    .modal-login .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #60c7c1;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+        border: none;
+    }
+	.modal-login .btn:hover, .modal-login .btn:focus {
+		background: #45aba6;
+		outline: none;
+	}
+	.trigger-btn {
+		display: inline-block;
+		margin: 100px auto;
+	}
+</style>
+</head>
+<body>
+<!-- Modal HTML -->
+<div class="section-title" data-aos="fade-up">
+    <form action="{% url 'module1:home' %}" method="post">
+        {% csrf_token %}
+        {% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: red;">
+						{{ message }}
+					</li>
+				{% else %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color:black;">
+						{{ message }}
+					</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+        {% endif %}
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="avatar">
+                        <img src="{% static 'assets/img/avatar.png' %}" alt="Avatar">
+                    </div>
+                </div>
+				<h4>Login</h4><br>
+                <div class="modal-body">
+					<div class="form-group">
+						<input type="text" class="form-control" name="uname" placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="pas" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+{% endblock %}
+
+
+
+<!--	    &lt;!&ndash; ======= login Section ======= &ndash;&gt;-->
+<!--<section id="login" class="login">-->
+<!--    <div class="container">-->
+<!--        <div class="section-title" data-aos="fade-up">-->
+<!--		<h1>login</h1>-->
+<!--			&lt;!&ndash; Material form login &ndash;&gt;-->
+<!--	<div class="container border-warning rounded">-->
+<!--	&lt;!&ndash;Card content&ndash;&gt;-->
+<!--	<div class="card">-->
+<!--	  &lt;!&ndash; Form &ndash;&gt;-->
+<!--	  <form action="{% url 'module1:home' %}" method="post">-->
+<!--		&lt;!&ndash; Email &ndash;&gt;-->
+<!--		{% csrf_token %}-->
+<!--		<div class="container rounded">-->
+<!--		<br>-->
+<!--			{% if messages %}-->
+<!--			<ul class="messages">-->
+<!--				{% for message in messages %}-->
+<!--				{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}-->
+<!--					<li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: red;">-->
+<!--						{{ message }}-->
+<!--					</li>-->
+<!--				{% else %}-->
+<!--					<li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color:black;">-->
+<!--						{{ message }}-->
+<!--					</li>-->
+<!--				{% endif %}-->
+<!--				{% endfor %}-->
+<!--			</ul>-->
+<!--			{% endif %}-->
+<!--			<label for="materialLoginFormEmail"><strong>Username</strong></label>-->
+<!--			<input type="text" id="materialLoginFormEmail" class="form-control" name="uname" required><br>-->
+<!--			<label for="materialLoginFormPassword"><strong>Password</strong></label>-->
+<!--		  	<input type="password" id="materialLoginFormPassword" class="form-control" name="pas" required>-->
+<!--		  &lt;!&ndash; Sign in button &ndash;&gt;-->
+<!--			<button class="btn btn-info btn-rounded my-4" type="submit">Sign in</button>-->
+<!--		&lt;!&ndash; Register &ndash;&gt;-->
+<!--			<p>Not a member?-->
+<!--		  	<a href="">Register</a>-->
+<!--			</p>-->
+<!--			<br>-->
+<!--		</div>-->
+<!--	  </form>-->
+<!--	  &lt;!&ndash; Form &ndash;&gt;-->
+<!--	</div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; Material form login &ndash;&gt;-->
+<!--			</form>-->
+<!--        </div>-->
+<!--</div>-->
+<!--</section>&lt;!&ndash; End login Section &ndash;&gt;-->
+
+
